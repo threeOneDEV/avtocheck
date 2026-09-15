@@ -769,3 +769,29 @@ a {
 .mt-16 {
     margin-top: 16px;
 }
+
+/* ===== HEADER PHONES ===== */
+.header-actions .header-phones {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.header-actions .header-phones .phone-link {
+    font-size: 13px;
+    padding: 4px 16px;
+    line-height: 1.25;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .header-actions .header-phones {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .header-actions .header-phones .phone-link {
+        padding: 5px 14px;
+    }
+}

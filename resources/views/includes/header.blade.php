@@ -8,7 +8,10 @@
             </div>
         </div>
         <div class="header-actions">
-            <a href="tel:+78442554653" class="phone-link">📞 +7 (8442) 55-46-53</a>
+            <div class="header-phones">
+                <a href="tel:+78442502112" class="phone-link">📞 +7 (8442) 50-21-12</a>
+                <a href="tel:+79275102112" class="phone-link">📞 +7 (927) 510-21-12</a>
+            </div>
             <a href="{{route('main.index')}}" class="phone-link">🏠 Главная</a>
             <a href="{{route('order.create')}}" class="btn-primary">📋 Записаться на ТО</a>
         </div>
