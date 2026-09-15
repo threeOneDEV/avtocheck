@@ -42,7 +42,7 @@
             <!-- Кнопки -->
             <div class="form-actions">
                 <button type="submit" class="btn-primary">📨 Отправить заявку</button>
-                <a href="index.html" class="btn-secondary-outline">← Вернуться на главную</a>
+                <a href="{{route('main.index')}}" class="btn-secondary-outline">← Вернуться на главную</a>
             </div>
         </form>
         <div class="form-message" style="display:none; margin-top: 20px; text-align: center;"></div>
