@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'max' => [
+        'token' => env('MAX_BOT_TOKEN'),
+        'user_ids' => array_values(array_map('intval', array_filter(explode(',', env('MAX_USER_IDS', ''))))),
+    ]
+
 ];

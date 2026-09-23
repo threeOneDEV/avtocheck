@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendInspectionNotification;
 use App\Models\Order;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -16,7 +17,7 @@ class OrderController extends Controller
 
     public function store(Request $request): JsonResponse
     {
-        $validated = $request->validate([
+        $data = $request->validate([
             'name'     => ['required', 'string', 'max:255'],
             'phone'    => ['required', 'string', 'max:30'],
             'car'      => ['required', 'string', 'max:255'],
@@ -24,9 +25,11 @@ class OrderController extends Controller
         ]);
 
         try{
-            Order::create($validated);
+            Order::create($data);
+
+            SendInspectionNotification::dispatch($data);
         }catch(Exception $e){
-            dd($e->getMessage());
+            return response()->json(['message' => $e->getMessage()]);
         }
 
         return response()->json(['message' => 'Заявка отправлена']);
