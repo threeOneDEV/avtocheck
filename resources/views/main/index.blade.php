@@ -75,7 +75,7 @@
         </div>
         <div class="hours-holiday">
             <span class="label">🎉 Праздничные дни:</span>
-            <span class="text">график работы пункта уточняйте по телефону <strong>+7 (8442) 55-46-53</strong></span>
+            <span class="text">график работы пункта уточняйте по телефону <strong>+7 (8442) 50-21-12</strong></span>
         </div>
     </div>
 </section>

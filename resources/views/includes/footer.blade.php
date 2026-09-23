@@ -3,7 +3,7 @@
         <span>© 2026 AvtoCheckVlg.ru — технический осмотр легкового транспорта</span>
         <span>
             <a href="mailto:tovlgd@mail.ru">tovlgd@mail.ru</a> &nbsp;·&nbsp;
-            <a href="tel:+78442554653">+7 (8442) 55-46-53</a>
+            <a href="tel:+78442554653">+7 (8442) 50-21-12</a>
         </span>
     </div>
 </footer>
