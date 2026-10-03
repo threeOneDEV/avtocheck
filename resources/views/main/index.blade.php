@@ -170,7 +170,7 @@
         <div class="accreditation-photo">
             <!-- Сюда вы вставите свою фотографию. Атрибут src указывает на тестовое изображение -->
             <img
-                src="https://xn--34-6kcaird2bbpvbdokghgjfc2d.xn--p1ai/gallery_gen/3f44b82801502897a2351a62fa3b85c5_826x575.61875.jpg"
+                src="{{asset('images/attestat.jpg')}}"
                 alt="Аттестат аккредитации оператора технического осмотра" />
             <div class="photo-caption">
                 ⭐ Аттестат аккредитации в системе технического осмотра (действителен на текущий период)
