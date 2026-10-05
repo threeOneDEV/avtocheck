@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\MaxController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => '/'], function(){
     Route::get('/', [MainController::class, 'index'])->name('main.index');
 });
+
+Route::post('/webhook/max', [MaxController::class, 'handle']);
 
 Route::group(['prefix' => '/order'], function(){
     Route::get('/create', [OrderController::class, 'create'])->name('order.create');

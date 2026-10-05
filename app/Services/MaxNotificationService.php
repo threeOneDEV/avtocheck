@@ -21,38 +21,24 @@ class MaxNotificationService
     public function sendInspectionNotification(array $data): void
     {
         foreach ($this->userIds as $userId) {
-            $this->sendMessage($data, $userId);
+            $this->sendNotifyMessage($data, $userId);
         }
     }
 
-    private function sendMessage($data, $userId)
+    public function sendStartMessage(int $userId): void
     {
-        try {
-            $response = Http::withOptions([
-                'query' => ['user_id' => $userId],
-            ])
-            ->withHeaders([
-                'Authorization' => $this->token,
-                'Content-Type' => 'application/json',
-            ])
-            ->post($this->apiUrl, [
-                'text' => $this->buildMessage($data),
-                'format' => 'html',
-            ]);
+        $this->sendPayload($userId, [
+            'text'   => 'Нажмите на кнопку "Открыть" для записи на Техосмотр',
+            'format' => 'html',
+        ]);
+    }
 
-            if ($response->successful()) {
-                Log::info('Уведомление MAX отправлено успешно', ['user_id' => $userId]);
-            }
-
-            Log::error('Ошибка отправки уведомления MAX', [
-                'status' => $response->status(),
-                'body' => $response->body(),
-            ]);
-        } catch (\Exception $e) {
-            Log::error('Исключение при отправке уведомления MAX', [
-                'message' => $e->getMessage(),
-            ]);
-        }
+    private function sendNotifyMessage(array $data, int $userId): void
+    {
+        $this->sendPayload($userId, [
+            'text'   => $this->buildMessage($data),
+            'format' => 'html',
+        ]);
     }
 
     protected function buildMessage(array $data): string
@@ -68,5 +54,33 @@ class MaxNotificationService
             Carbon::parse($data['datetime'])->format('d/m/Y H:i') ?? 'Не указано',
             $data['phone'] ?? 'Не указано'
         );
+    }
+
+    private function sendPayload(string $userId, array $payload): void
+    {
+        try {
+            $response = Http::withOptions(['query' => ['user_id' => $userId]])
+                ->withHeaders([
+                    'Authorization' => $this->token,
+                    'Content-Type'  => 'application/json',
+                ])
+                ->post($this->apiUrl, $payload);
+
+            if ($response->successful()) {
+                Log::info('Уведомление MAX отправлено успешно', ['user_id' => $userId]);
+                return;
+            }
+
+            Log::error('Ошибка отправки уведомления MAX', [
+                'user_id' => $userId,
+                'status'  => $response->status(),
+                'body'    => $response->body(),
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Исключение при отправке уведомления MAX', [
+                'user_id' => $userId,
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 }
