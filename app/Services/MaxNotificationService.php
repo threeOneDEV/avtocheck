@@ -28,7 +28,8 @@ class MaxNotificationService
     public function sendStartMessage(int $userId): void
     {
         $this->sendPayload($userId, [
-            'text'   => 'Нажмите на кнопку "Открыть" для записи на Техосмотр',
+            'text'   => "🔧 <b>Добро пожаловать!</b>\n\n"
+                . "Нажмите на кнопку <b>«Открыть»</b> ниже, чтобы записаться на техосмотр.",
             'format' => 'html',
         ]);
     }
@@ -45,10 +46,10 @@ class MaxNotificationService
     {
         return sprintf(
             "🔧 <b>Новая запись на техосмотр</b>\n\n" .
-            "👤 <b>Клиент:</b> %s\n" .
-            "🚗 <b>Автомобиль:</b> %s\n" .
-            "📅 <b>Дата и время:</b> %s\n" .
-            "📞 <b>Телефон:</b> %s\n",
+                "👤 <b>Клиент:</b> %s\n" .
+                "🚗 <b>Автомобиль:</b> %s\n" .
+                "📅 <b>Дата и время:</b> %s\n" .
+                "📞 <b>Телефон:</b> %s\n",
             $data['name'] ?? 'Не указано',
             $data['car'] ?? 'Не указано',
             Carbon::parse($data['datetime'])->format('d/m/Y H:i') ?? 'Не указано',
