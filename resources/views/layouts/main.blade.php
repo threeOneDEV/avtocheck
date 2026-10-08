@@ -21,5 +21,14 @@
 @include('includes.footer')
 
 </body>
-
+<script>
+    (function () {
+        var header = document.getElementById('header');
+        var toggle = header.querySelector('.header-toggle');
+        toggle.addEventListener('click', function () {
+            var isOpen = header.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    })();
+</script>
 </html>
