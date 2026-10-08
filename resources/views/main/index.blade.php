@@ -109,11 +109,11 @@
         <div class="price-grid">
             <div class="price-card">
                 <div class="service">M1 легковой <span class="badge">первичный</span></div>
-                <div class="cost">981 <small>₽</small></div>
+                <div class="cost">1074 <small>₽</small></div>
             </div>
             <div class="price-card">
                 <div class="service">M1 легковой <span class="badge">повторный</span></div>
-                <div class="cost">980 <small>₽</small></div>
+                <div class="cost">1070 <small>₽</small></div>
             </div>
             <div class="price-card">
                 <div class="service">Регулировка света фар</div>
@@ -121,7 +121,7 @@
             </div>
             <div class="price-card">
                 <div class="service">Проверка состояния рабочих жидкостей</div>
-                <div class="cost">819 <small>₽</small></div>
+                <div class="cost">726 <small>₽</small></div>
             </div>
         </div>
     </div>
