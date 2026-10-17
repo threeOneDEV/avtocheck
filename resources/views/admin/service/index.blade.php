@@ -5,36 +5,38 @@
 @section('content')
     <h1 class="admin-title">Услуги</h1>
 
-    <table class="admin-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Название</th>
-                <th>Цена</th>
-                <th>Тип</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse($services as $service)
+    <div class="admin-table-wrap">
+        <table class="admin-table admin-table--stack">
+            <thead>
                 <tr>
-                    <td>{{ $service->id }}</td>
-                    <td>{{ $service->title }}</td>
-                    <td>{{ number_format((float) $service->price, 2, '.', ' ') }} ₽</td>
-                    <td>
-                        @if($service->type)
-                            <span class="admin-badge">{{ \App\Models\Service::TYPES[$service->type] ?? $service->type }}</span>
-                        @else
-                            —
-                        @endif
-                    </td>
-                    <td>
-                        <a href="{{ route('admin.service.edit', $service) }}" class="admin-link">Редактировать</a>
-                    </td>
+                    <th>ID</th>
+                    <th>Название</th>
+                    <th>Цена</th>
+                    <th>Тип</th>
+                    <th></th>
                 </tr>
-            @empty
-                <tr><td colspan="5" class="admin-empty">Услуг пока нет</td></tr>
-            @endforelse
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse($services as $service)
+                    <tr>
+                        <td data-label="ID">{{ $service->id }}</td>
+                        <td data-label="Название">{{ $service->title }}</td>
+                        <td data-label="Цена">{{ number_format((float) $service->price, 2, '.', ' ') }} ₽</td>
+                        <td data-label="Тип">
+                            @if($service->type)
+                                <span class="admin-badge">{{ \App\Models\Service::TYPES[$service->type] ?? $service->type }}</span>
+                            @else
+                                —
+                            @endif
+                        </td>
+                        <td class="edit-service" data-label="">
+                            <a href="{{ route('admin.service.edit', $service) }}" class="admin-link">Редактировать</a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="5" class="admin-empty">Услуг пока нет</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 @endsection
