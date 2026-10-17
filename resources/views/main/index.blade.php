@@ -134,21 +134,21 @@
                 <span class="pdf-icon">📕</span>
                 <span class="label">
                     Федеральный закон “О техническом осмотре…”
-                    <span class="small">PDF, 2.4 МБ</span>
+                    <span class="small">PDF, {{ file_size_mb('documents/federal_law_to.pdf') }}</span>
                 </span>
             </a>
             <a href="{{ asset('documents/rules_to.pdf') }}" class="pdf-btn" target="_blank">
                 <span class="pdf-icon">📘</span>
                 <span class="label">
                     Правила проведения технического осмотра
-                    <span class="small">PDF, 1.8 МБ</span>
+                    <span class="small">PDF, {{ file_size_mb('documents/rules_to.pdf') }}</span>
                 </span>
             </a>
             <a href="{{ asset('documents/dogovor_to.pdf') }}" class="pdf-btn" target="_blank">
                 <span class="pdf-icon">📙</span>
                 <span class="label">
                     Типовая форма договора на ТО
-                    <span class="small">PDF, 0.9 МБ</span>
+                    <span class="small">PDF, {{ file_size_mb('documents/dogovor_to.pdf') }}</span>
                 </span>
             </a>
         </div>
