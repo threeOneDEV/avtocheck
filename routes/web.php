@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\MainController;
-use App\Http\Controllers\MaxController;
-use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/webhook/max', [\App\Http\Controllers\MaxController::class, 'handle']);
+
 Route::group(['prefix' => '/'], function(){
-    Route::get('/', [MainController::class, 'index'])->name('main.index');
+    Route::get('/', [\App\Http\Controllers\MainController::class, 'index'])->name('main.index');
 });
 
-Route::post('/webhook/max', [MaxController::class, 'handle']);
+Route::group(['prefix' => '/admin'], function(){
+    Route::get('/login', [\App\Http\Controllers\Admin\Auth\LoginController::class, 'show'])->name('admin.login');
+    Route::post('/login', [\App\Http\Controllers\Admin\Auth\LoginController::class, 'login'])->name('admin.login.post');
+    Route::post('/logout', [\App\Http\Controllers\Admin\Auth\LoginController::class, 'logout'])->name('admin.logout');
+
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\MainController::class, 'index'])->name('admin.main.index');
+
+        Route::group(['prefix' => '/service'], function () {
+            Route::get('/', [\App\Http\Controllers\Admin\ServiceController::class, 'index'])->name('admin.service.index');
+            Route::get('/{service}/edit/', [\App\Http\Controllers\Admin\ServiceController::class, 'edit'])->name('admin.service.edit');
+            Route::put('/{service}', [\App\Http\Controllers\Admin\ServiceController::class, 'update'])->name('admin.service.update');
+        });
+    });
+});
 
 Route::group(['prefix' => '/order'], function(){
-    Route::get('/create', [OrderController::class, 'create'])->name('order.create');
-    Route::post('/store', [OrderController::class, 'store'])->name('order.store');
+    Route::get('/create', [\App\Http\Controllers\OrderController::class, 'create'])->name('order.create');
+    Route::post('/store', [\App\Http\Controllers\OrderController::class, 'store'])->name('order.store');
 });

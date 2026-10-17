@@ -107,22 +107,17 @@
             <span class="icon">💰</span> Стоимость услуг
         </div>
         <div class="price-grid">
-            <div class="price-card">
-                <div class="service">M1 легковой <span class="badge">первичный</span></div>
-                <div class="cost">1074 <small>₽</small></div>
-            </div>
-            <div class="price-card">
-                <div class="service">M1 легковой <span class="badge">повторный</span></div>
-                <div class="cost">1070 <small>₽</small></div>
-            </div>
-            <div class="price-card">
-                <div class="service">Регулировка света фар</div>
-                <div class="cost">от 500 <small>₽</small></div>
-            </div>
-            <div class="price-card">
-                <div class="service">Проверка состояния рабочих жидкостей</div>
-                <div class="cost">726 <small>₽</small></div>
-            </div>
+            @foreach ($services as $service)
+                <div class="price-card">
+                    <div class="service">
+                        {{ $service->title }}
+                        @if ($service->type)
+                            <span class="badge">{{ \App\Models\Service::TYPES[$service->type] }}</span>
+                        @endif
+                    </div>
+                    <div class="cost">{{ $service->formatted_price }} <small>₽</small></div>
+                </div>
+            @endforeach
         </div>
     </div>
 </section>
